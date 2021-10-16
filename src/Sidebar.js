@@ -8,9 +8,10 @@ import {SearchOutlined} from '@material-ui/icons';
 import SidebarChat from './SidebarChat';
 import {useState, useEffect} from 'react';
 import db from './firebase';
+import {useStateValue} from './StateProvider';
 function Sidebar() {
     const [rooms,setRooms] = useState([]);
-
+    const[{ user }, dispatch] = useStateValue();
     useEffect(() => {
        const unsubscribe = db.collection("rooms").onSnapshot((snapshot) => 
             setRooms(snapshot.docs.map((doc)=>
@@ -31,8 +32,9 @@ function Sidebar() {
             <div className="sidebar_header">
                 <div className="sidebar_headerLeft">
                     <IconButton>
-                        <Avatar src='https://www.statnews.com/wp-content/uploads/2021/01/image0-645x645.jpeg'/>
+                        <Avatar src={user?.photoURL}/>   
                     </IconButton>
+                    <h3>{user?.displayName}</h3>
                 </div>
                 <div className="sidebar_headerRight">
                     <IconButton>

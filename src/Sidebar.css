@@ -11,6 +11,12 @@
     border-right: 1px solid lightgreen;
 }
 
+.sidebar_headerLeft{
+    display: flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
 .sidebar_headerRight{
     display:flex;
     align-items:center;
